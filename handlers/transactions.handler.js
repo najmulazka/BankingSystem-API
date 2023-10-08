@@ -191,6 +191,7 @@ async function showTransaction(req, res, next) {
         source_name: source_user.name,
         source_bank_name: source_bank_account.bank_name,
         source_bank_account_number: source_bank_account.bank_account_number,
+        amount: transaction.amount,
       },
     });
   }
@@ -216,6 +217,7 @@ async function showTransaction(req, res, next) {
         destination_name: destination_user.name,
         destination_bank_name: destination_bank_account.bank_name,
         destination_bank_account_number: destination_bank_account.bank_account_number,
+        amount: transaction.amount,
       },
     });
   }
@@ -256,6 +258,7 @@ async function showTransaction(req, res, next) {
         destination_name: destination_user.name,
         destination_bank_name: destination_bank_account.bank_name,
         destination_bank_account_number: destination_bank_account.bank_account_number,
+        amount: transaction.amount,
       },
     });
   }
