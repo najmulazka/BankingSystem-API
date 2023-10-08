@@ -1,0 +1,53 @@
+GET http://localhost:3000/api/v1/
+
+### CREATE USERS AND PROFILES
+POST  http://localhost:3000/api/v1/users
+Content-Type: application/json
+
+{
+    "name":"Najmul Azka",
+    "email":"najmul@gmail.com",
+    "password":"najmul232",
+    "identity_type":"KTP",
+    "identity_number":"33031262982347332",
+    "address":"Purbalingga"
+}
+
+
+### SHOW ALL USERS
+GET  http://localhost:3000/api/v1/users
+
+### DETAIL USER WITH ID
+GET  http://localhost:3000/api/v1/users/2
+
+### CREATE BANK ACCOUNT
+POST http://localhost:3000/api/v1/accounts
+Content-Type: application/json
+
+{
+    "user_id" :1,
+    "bank_name" : "BCA",
+    "bank_account_number":"0723874923831",
+    "balance":"200000"
+}
+
+### SHOW ALL ACCOUNTS
+GET http://localhost:3000/api/v1/accounts
+
+### SHOW DETAIL ACCOUNT
+GET http://localhost:3000/api/v1/accounts/1
+
+### CREATE TRANSACTION
+POST http://localhost:3000/api/v1/transactions
+Content-Type: application/json
+
+{
+    "source_account_id":1,
+    "amount":30000
+}
+
+### SHOW ALL TRANSACTION
+GET http://localhost:3000/api/v1/transactions
+
+### SHOW DETAIL TRANSACTION
+GET http://localhost:3000/api/v1/transactions/1
