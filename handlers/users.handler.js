@@ -31,9 +31,9 @@ async function createUser(req, res, next) {
     });
 
     if (existEmail) {
-      res.json({ status: false, message: `Post with email : ${email} already` });
+      res.status(400).json({ status: false, message: `Post with email : ${email} already` });
     } else if (existIdentityNumber) {
-      res.json({ status: false, message: `Post with identity number : ${identity_number} already` });
+      res.status(400).json({ status: false, message: `Post with identity number : ${identity_number} already` });
     } else {
       const result = await prisma.$transaction(async (prisma) => {
         const users = await prisma.users.create({

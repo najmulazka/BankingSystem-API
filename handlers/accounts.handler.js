@@ -30,9 +30,9 @@ async function createAccount(req, res, next) {
     });
 
     if (!existUser) {
-      res.json({ status: false, message: `Post user id ${user_id} doesn't not exist` });
+      res.status(400).json({ status: false, message: `Post user id ${user_id} doesn't not exist` });
     } else if (existAccountNumber) {
-      res.json({ status: false, message: `Post with bank account number : ${bank_account_number} already` });
+      res.status(400).json({ status: false, message: `Post with bank account number : ${bank_account_number} already` });
     } else {
       const result = await prisma.bank_accounts.create({
         data: {

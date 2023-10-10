@@ -51,4 +51,4 @@ Content-Type: application/json
 GET http://localhost:3000/api/v1/transactions
 
 ### SHOW DETAIL TRANSACTION
-GET http://localhost:3000/api/v1/transactions/1
+GET http://localhost:3000/api/v1/transactions/2

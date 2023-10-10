@@ -17,7 +17,7 @@ async function createTransaction(req, res, next) {
     }
 
     if (source_account_id == null && destination_account_id == null) {
-      res.json({ status: false, message: `Transaction failed!` });
+      res.status(400).json({ status: false, message: `Transaction failed!` });
     } else if (destination_account_id == null) {
       const bank_account = await prisma.bank_accounts.findUnique({
         where: {
@@ -26,9 +26,9 @@ async function createTransaction(req, res, next) {
       });
 
       if (!bank_account) {
-        res.json({ status: false, message: `The source account does not exist` });
+        res.status(400).json({ status: false, message: `The source account does not exist` });
       } else if (bank_account.balance < amount) {
-        res.json({ status: false, message: `Low balance source account` });
+        res.status(400).json({ status: false, message: `Low balance source account` });
       } else {
         const result = await prisma.transactions.create({
           data: {
@@ -60,7 +60,7 @@ async function createTransaction(req, res, next) {
       });
 
       if (!bank_account) {
-        res.json({ status: false, message: `The destination account does not exist` });
+        res.status(400).json({ status: false, message: `The destination account does not exist` });
       } else {
         const result = await prisma.transactions.create({
           data: {
@@ -98,13 +98,13 @@ async function createTransaction(req, res, next) {
       });
 
       if (!source_bank_account) {
-        res.json({ status: false, message: `The source account does not exist` });
+        res.status(400).json({ status: false, message: `The source account does not exist` });
       } else if (!destination_bank_account) {
-        res.json({ status: false, message: `The destination account does not exist` });
+        res.status(400).json({ status: false, message: `The destination account does not exist` });
       } else if (source_account_id == destination_account_id) {
-        res.json({ status: false, message: `Source account id and destination account id cannot be the same` });
+        res.status(400).json({ status: false, message: `Source account id and destination account id cannot be the same` });
       } else if (source_bank_account.balance < amount) {
-        res.json({ status: false, message: `Low balance source account` });
+        res.status(400).json({ status: false, message: `Low balance source account` });
       } else {
         const result = await prisma.transactions.create({
           data: {
@@ -167,7 +167,7 @@ async function showTransaction(req, res, next) {
   });
 
   if (!transaction) {
-    res.send(`Id transaction doesn't not exist`);
+    res.status(400).send(`Id transaction doesn't not exist`);
   }
 
   if (transaction.destination_account_id == null) {
